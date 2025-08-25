@@ -24,7 +24,7 @@
 | ROC-AUC（总体） | 0.74 | 0.79 |
 | Accuracy（总体） | 0.74 | 0.78 |
 
-以上数值来自论文的实验节选，具体混淆矩阵、PR/ROC 曲线与最优阈值选择过程在论文正文图表中有完整展示。
+以上数值来自文章的实验节选，具体混淆矩阵、PR/ROC 曲线与最优阈值选择过程在正文图表中有完整展示。
 
 ## 目录约定
 建议目录包含 notebooks（分析与可视化）、scripts（训练与评估）、data（示例数据与链接说明）、results（图表与指标表）。仓库不直接包含超大原始数据或受平台条款约束的完整文本，仅保留小样本或数据获取脚本，并在 README 中提供复现实验的说明。
@@ -34,7 +34,8 @@
 
 ```bash
 pip install -r requirements.txt
-python scripts/prepare_sentiment.py    # 调用 FinBERT 对清洗后的文本打分并聚合到日级
-python scripts/build_features.py       # 合并价格特征与情绪特征并标准化
-python scripts/train_svm.py            # 训练基线与融合情绪的 SVM，含网格搜索与TimeSeriesSplit
-python scripts/evaluate.py             # 生成混淆矩阵、PR/ROC 曲线与指标表
+python scripts/data_cleaning.ipynb    # 对原始数据集进行清洗
+python scripts/FinBERT_sentiment.ipynb    # 调用 FinBERT 对清洗后的文本打分并聚合到日级
+python scripts/描述性统计分析.ipynb            # 对数据集进行描述性统计
+python scripts/SVM波动率预测.ipynb       # 合并特征并标准化,训练基线与融合情绪的SVM，含网格搜索与TimeSeriesSplit,生成混淆矩阵、PR/ROC 曲线与指标表
+python scripts/robustness_tests.ipynb             # 对于SVM预测模型进行稳健型分析：模型切换和变量滞后
